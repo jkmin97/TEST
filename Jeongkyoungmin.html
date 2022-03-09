@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./bootstrap.min.css">
+  <title>Test</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid justify-content-center">
+      <a class="navbar-brand" href="TEST1.html">차트 1</a>
+      <a class="navbar-brand" href="TEST2.html">차트 2</a>
+    </div>
+  </nav>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Brand');
+      data.addColumn('number', 'Preference');
+      data.addRows([
+        ['교촌치킨', 50],
+        ['BHC', 37],
+        ['굽네치킨', 28],
+        ['네네치킨', 19],
+        ['BBQ', 18]
+      ]);
+      var options = {
+        'title': '치킨 선호도',
+        'width': 2200,
+        'height': 700
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>
+  <div id="chart_div"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

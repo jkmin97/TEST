@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <title>TEST2</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid justify-content-center">
+            <a class="navbar-brand" href="TEST1.html">차트 1</a>
+            <a class="navbar-brand" href="TEST2.html">차트 2</a>
+        </div>
+    </nav>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {
+            packages: ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ["Chicken", "Brand", {
+                    role: "style"
+                }],
+                ["교촌치킨", 50, "blue"],
+                ["BHC치킨", 37, "red"],
+                ["굽네치킨", 28, "orange"],
+                ["네네치킨", 19, "green"],
+                ["BBQ치킨", 18, "violet"]
+            ]);
+
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                {
+                    calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation"
+                },
+                2
+            ]);
+
+            var options = {
+                title: "치킨 선호도",
+                width: 1500,
+                height: 700,
+                bar: {
+                    groupWidth: "95%"
+                },
+                legend: {
+                    position: "none"
+                },
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+            chart.draw(view, options);
+        }
+    </script>
+    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
